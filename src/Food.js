@@ -1,38 +1,22 @@
-import React, {Component} from 'react'
-
-class Food extends Component {
-    constructor(){
-        super()
-        this.state= {
-            name:''
-        }
-    }
+import React from 'react'
 
 
- 
-render(){
-    const { carbName,carbValue,carbUom, proteinName,proteinValue,proteinUom,fatName,fatValue,fatUom,caloriesName,caloriesValue,caloriesUom} = this.props;
-
-    return(
-    <div>
+export default function Food(props) {
+    return (
         <div>
-            <h1>{this.props.foodName}</h1>
-            <p>{carbName}:{carbValue}{carbUom}</p>
-            <p>{proteinName}:{proteinValue}{proteinUom}</p>
-            <p>{fatName}:{fatValue}{fatUom}</p>
-            <p>{caloriesName}:{caloriesValue}{caloriesUom}</p>
-            
-        </div>       
-        
-        <div>
-            <img src={this.props.photo}/>
+            <div>
+                <h1>{props.item_name}</h1>
+                <p></p>
+            </div>
+
+            <div>
+                <img src={props.thumbnail} />
+            </div>
         </div>
-    </div>
     )
- }   
 }
 
-export default Food
+
 
 
 

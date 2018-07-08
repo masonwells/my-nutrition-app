@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 // End points
 const origin = '/api/nutrition'
 const nutritionController = require('./controllers/nutrition_controller.js')
-// app.post(origin,nutritionController.create)
+// app.post(origin,nutritionController.getInfo)
 app.post(origin, nutritionController.getInfo)
 
 
