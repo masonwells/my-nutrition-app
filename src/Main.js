@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import Food from './Food'
 import Title from './Title'
+import './Main.css'
+import './Food.css'
 
 // import App from './App'
 
@@ -41,14 +43,18 @@ class Main extends Component {
         console.log(this.state);
         let { item_name, thumbnail, nutrient_value, nutrient_uom } = this.state.nutrition;
         return(
-            <div>
+         <div>  
+            <div className = "title">
                 <Title/>
+            </div>
+            <div className = "mainContent" >
                 <input onChange={(e) => this.updateUserInput(e.target.value)} />
                 <button onClick={() => this.getNutrition()}>Submit</button>
-                <p>{ item_name }</p>
+                <h1>{item_name}</h1>
                 <p>Carbs: { nutrient_value ? nutrient_value + nutrient_uom : '' }</p>
                 <img src={ thumbnail }/>
             </div>
+        </div> 
         ) 
     }
 }

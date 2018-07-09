@@ -12,7 +12,7 @@ module.exports = {
         console.log('x-app-key', process.env.key2);
         let options = { headers: { 'x-app-id': process.env.key1, 'x-app-key': process.env.key2 }};
         console.log(JSON.stringify(options));
-        axios.get(`https://apibeta.nutritionix.com/v2/search?q=apple&limit=1&offset=0&search_type=grocery&search_nutrient=carb`, options).then(
+        axios.get(`https://apibeta.nutritionix.com/v2/search?q=${req.body.input}&limit=1&offset=0&search_type=grocery&search_nutrient=carb`, options).then(
             response => {
                 nutrition = response.data
                 console.log('Success!!!');
