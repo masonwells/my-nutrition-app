@@ -4,6 +4,7 @@ import Food from './Food'
 import Title from './Title'
 import './Main.css'
 import './Food.css'
+import BloodSugar from './BloodSugar'
 
 // import App from './App'
 
@@ -14,15 +15,20 @@ class Main extends Component {
         super()
         this.state = {
             nutrition: {},
-            userInput: '',
+            userInput: ''
         }
+    }
+
+
+    componentDidMount() {
+        axios.get()
     }
 
 
     getNutrition() {
         let nutrientNames = ['calories', 'fat', 'carb', 'protein']
         for (let i = 0; i < nutrientNames.length; i++) {
-            axios.post(url, { input: this.state.userInput, nutrient: nutrientNames[i] }).then(response => {
+            axios.get(url, { input: this.state.userInput, nutrient: nutrientNames[i] }).then(response => {
                 this.setState({ nutrition: response.data.results[0] })
             })
         }
@@ -42,20 +48,32 @@ class Main extends Component {
     render() {
         console.log(this.state);
         let { item_name, thumbnail, nutrient_value, nutrient_uom } = this.state.nutrition;
-        return(
-         <div>  
-            <div className = "title">
-                <Title/>
+
+
+        return (
+
+            <div>
+                <style>
+                    @import url('https://fonts.googleapis.com/css?family=Montserrat');
+            </style>
+                <div className="title">
+                    <Title
+                        textTitle='Carb-Sharp' />
+                </div>
+                <div className="mainContent" >
+                    <input className="input" onChange={(e) => this.updateUserInput(e.target.value)} />
+                    <button className="submit" onClick={() => this.getNutrition()}>Submit</button>
+                    <Food
+                        item_name={item_name}
+                        thumbnail={thumbnail}
+                        nutrient_uom={nutrient_uom}
+                        nutrient_value={nutrient_value} />
+                </div>
+                <footer>
+                    <BloodSugar />
+                </footer>
             </div>
-            <div className = "mainContent" >
-                <input onChange={(e) => this.updateUserInput(e.target.value)} />
-                <button onClick={() => this.getNutrition()}>Submit</button>
-                <h1>{item_name}</h1>
-                <p>Carbs: { nutrient_value ? nutrient_value + nutrient_uom : '' }</p>
-                <img src={ thumbnail }/>
-            </div>
-        </div> 
-        ) 
+        )
     }
 }
 
